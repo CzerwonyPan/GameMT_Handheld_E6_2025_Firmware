@@ -1,0 +1,16 @@
+For Retro Arch 32 u must put a listed files blow in specyfic directory or u will dont have navigation control.
+1. Install total comander and open it.
+2. copy file rk29-keypad.cfg and file GameMT_E6.cfg to directory  /data/data/com.retroarch.ra32/autoconfig/android/
+3. copy file retroarch.cfg to directory /storage/emulated/0/Android/data/com.retroarch.ra32/files/
+4.Done restart console or app and should work.
+
+5* if u want mouse emulation for your console install my app GameMTTools_v7.apk it helps yout to emlate mouse turn on and off whathever u want.
+
+
+W przypadku Retro Arch 32 należy umieścić wymienione pliki w określonym katalogu, w przeciwnym razie nie będzie można sterować nawigacją.
+1. Zainstaluj Total Commander i otwórz go.
+2. Skopiuj plik rk29-keypad.cfg i plik GameMT_E6.cfg do katalogu /data/data/com.retroarch.ra32/autoconfig/android/
+3. Skopiuj plik retroarch.cfg do katalogu /storage/emulated/0/Android/data/com.retroarch.ra32/files/
+4. Uruchom ponownie konsolę lub aplikację – powinno działać.
+
+5* Jeśli chcesz emulować mysz na konsoli, zainstaluj moją aplikację GameMTTools_v7.apk, która pomoże Ci emulować włączanie i wyłączanie myszy w dowolnym momencie.

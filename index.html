@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameMT E6 2025 - Instrukcja Flashowania</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  .lang-switch { position: fixed; top: 16px; right: 16px; z-index: 100; }
+  .lang-btn { background: #21262d; color: #58a6ff; border: 1px solid #30363d;
+    padding: 8px 16px; cursor: pointer; border-radius: 6px; font-size: 14px;
+    margin-left: 4px; transition: background 0.2s; }
+  .lang-btn:hover, .lang-btn.active { background: #1f6feb; color: white; }
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { color: #58a6ff; font-size: 2em; margin: 40px 0 8px; text-align: center; }
+  .subtitle { text-align: center; color: #8b949e; margin-bottom: 40px; font-size: 1.1em; }
+  h2 { color: #3fb950; font-size: 1.4em; margin: 32px 0 12px;
+    padding-bottom: 8px; border-bottom: 1px solid #30363d; }
+  h3 { color: #58a6ff; font-size: 1.1em; margin: 20px 0 8px; }
+  p { margin: 8px 0; }
+  .step { background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 20px; margin: 16px 0; position: relative; }
+  .step-num { position: absolute; top: -14px; left: 16px;
+    background: #1f6feb; color: white; border-radius: 50%;
+    width: 28px; height: 28px; display: flex; align-items: center;
+    justify-content: center; font-weight: bold; font-size: 14px; }
+  code { background: #0d1117; color: #f0883e; padding: 2px 6px;
+    border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+  pre { background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+    padding: 16px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; padding: 0; color: #a5d6ff; font-size: 0.9em; }
+  .warn { background: #2d1f00; border-left: 4px solid #d29922;
+    padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .info { background: #0c2d6b; border-left: 4px solid #58a6ff;
+    padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .success { background: #0a2e1a; border-left: 4px solid #3fb950;
+    padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .danger { background: #2d0f0f; border-left: 4px solid #f85149;
+    padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th { background: #21262d; color: #58a6ff; padding: 10px 14px; text-align: left; }
+  td { padding: 8px 14px; border-bottom: 1px solid #21262d; }
+  tr:hover td { background: #161b22; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px;
+    font-size: 12px; font-weight: bold; margin: 2px; }
+  .badge-blue { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; }
+  .badge-green { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95044; }
+  .badge-red { background: #f8514922; color: #f85149; border: 1px solid #f8514944; }
+  .badge-orange { background: #d2992222; color: #d29922; border: 1px solid #d2992244; }
+  .tp-box { background: #21262d; border-radius: 8px; padding: 16px; margin: 12px 0;
+    border: 1px solid #30363d; text-align: center; font-size: 1.1em; }
+  .photo-placeholder { background: #161b22; border: 2px dashed #30363d;
+    border-radius: 8px; padding: 40px; text-align: center; color: #8b949e;
+    margin: 16px 0; font-style: italic; }
+  .pl { display: block; } .en { display: none; }
+  footer { text-align: center; color: #8b949e; padding: 40px 0; margin-top: 40px;
+    border-top: 1px solid #30363d; }
+  .os-tabs { display: flex; gap: 10px; margin: 20px 0 10px; }
+  .os-tab { background: #21262d; padding: 8px 16px; border-radius: 8px; cursor: pointer; border: 1px solid #30363d; transition: all 0.2s; }
+  .os-tab.active { background: #1f6feb; color: white; border-color: #1f6feb; }
+  .os-content { display: none; }
+  .os-content.active { display: block; }
+  .download-box { background: linear-gradient(135deg, #0a2e1a 0%, #0d1117 100%);
+    border: 2px solid #3fb950; border-radius: 12px; padding: 24px; margin: 20px 0;
+    text-align: center; }
+  .download-link { display: inline-block; background: #1f6feb; color: white;
+    padding: 12px 28px; border-radius: 8px; text-decoration: none;
+    font-weight: bold; font-size: 1.2em; margin: 8px; transition: background 0.2s; }
+  .download-link:hover { background: #58a6ff; }
+  .file-list { list-style: none; padding-left: 0; }
+  .file-list li { background: #0d1117; margin: 6px 0; padding: 8px 12px;
+    border-radius: 6px; border-left: 3px solid #58a6ff; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('pl')">🇵🇱 PL</button>
+  <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+
+<div class="container">
+
+<h1>GameMT E6 2025 / YX13-GAME-V3.1</h1>
+<p class="subtitle pl">Instrukcja instalacji niestandardowego oprogramowania</p>
+<p class="subtitle en" style="display:none">Custom firmware installation guide</p>
+
+<!-- ==================== POBRANIE OPROGRAMOWANIA / DOWNLOAD ==================== -->
+<span class="pl">
+<h2>📥 Pobieranie oprogramowania</h2>
+
+<div class="info" style="margin-bottom: 20px;">
+  <strong>⚠️ Ważne:</strong> Pliki są hostowane na zewnętrznych serwerach (MEGA, MediaFire) ze względu na limit rozmiaru plików GitHub (max 100 MB). 
+  Wszystkie archiwa są bezpieczne – w razie wątpliwości przeskanuj je przed rozpakowaniem.
+</div>
+
+<h3>Podstawowe pliki (wymagane)</h3>
+<table style="margin-bottom: 24px;">
+  <thead>
+    <tr><th>Plik</th><th>Opis</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Image_hendheld_e6_gamemt.zip</code></td><td>Główne archiwum z firmware, narzędziami i skryptami</td><td><a href="https://mega.nz/file/3KBhnbrQ#UrMYnMqCki3VUYvKrVpQz5eN2wiyoB3u0Celxk7UMkw" style="color:#58a6ff;">MEGA</a> / <a href="https://www.mediafire.com/file/7qa2zyyjzbxcbq6/Image_hendheld_e6_gamemt.zip/file" style="color:#58a6ff;">MediaFire</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Pliki opcjonalne</h3>
+<table style="margin-bottom: 24px;">
+  <thead>
+    <tr><th>Plik</th><th>Opis</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>EMULATORS.7z</code></td><td>Emulatory (RetroArch, PPSSPP, Mupen64Plus) z prekonfigurowanymi plikami</td><td><a href="https://mega.nz/file/jKgSmKBJ#a8xG7pZ9ibnc95uIZqp3Bdi6AV518FtLlwnqSwBqzw4" style="color:#58a6ff;">MEGA</a> / <a href="https://www.mediafire.com/file/c0z1on8lji9vtky/EMULATORS.7z/file" style="color:#58a6ff;">MediaFire</a></td></tr>
+  </tbody>
+</table>
+
+<div class="step"><div class="step-num">!</div>
+<h3>📁 Zawartość archiwum <code>Image_hendheld_e6_gamemt.zip</code></h3>
+<p>Po rozpakowaniu otrzymasz następującą strukturę plików:</p>
+
+<h4>🔹 GŁÓWNE PLIKI FIRMWARE (wymagane do flashowania)</h4>
+<ul class="file-list">
+  <li><code>parameter.txt</code> — plik konfiguracyjny partycji</li>
+  <li><code>boot.img</code> — obraz partycji boot (jądro systemu)</li>
+  <li><code>system.img</code> — obraz partycji systemowej Android</li>
+  <li><code>recovery.img</code> — obraz trybu recovery</li>
+  <li><code>misc.img</code> — obraz partycji misc</li>
+  <li><code>userdata.img</code> — obraz partycji użytkownika (opcjonalny)</li>
+</ul>
+
+<h4>🔹 NARZĘDZIA (dla Linux / Windows)</h4>
+<ul class="file-list">
+  <li><code>setup.sh</code> — skrypt konfiguracyjny dla Linux</li>
+  <li><code>flash_gamemt.sh</code> — skrypt flashowania dla Linux</li>
+  <li><code>upgrade_tool</code> — narzędzie flashowania Rockchip (Linux)</li>
+  <li><code>rkflashtoolv3.exe</code> — narzędzie flashowania Rockchip (Windows)</li>
+  <li><code>DriverAssitant_v5.1.1.zip</code> — sterowniki Rockchip dla Windows</li>
+</ul>
+
+<h4>🔹 DODATKOWE PLIKI</h4>
+<ul class="file-list">
+  <li><code>Testpoints_maskrom.jpg</code> — zdjęcie płyty z zaznaczonymi testpointami</li>
+  <li><code>Testpoints_maskrom_small.jpg</code> — drugie zdjęcie poglądowe</li>
+  <li><code>old_backup_orginal_firmware/</code> — folder z oryginalnym firmware producenta (backup)</li>
+  <li><code>GameMT_Tools.apk</code> — aplikacja narzędziowa na kartę SD</li>
+</ul>
+
+<div class="info">
+  <strong>📌 Uwaga:</strong> Emulatory (RetroArch, PPSSPP, Mupen64Plus) znajdują się w osobnym archiwum <code>EMULATORS.7z</code> i są opcjonalne.
+</div>
+</div>
+</span>
+
+<span class="en" style="display:none">
+<h2>📥 Download software</h2>
+
+<div class="info" style="margin-bottom: 20px;">
+  <strong>⚠️ Important:</strong> Files are hosted on external servers (MEGA, MediaFire) due to GitHub's 100 MB file size limit.
+  All archives are safe – if in doubt, scan them with antivirus software before extracting.
+</div>
+
+<h3>Required files</h3>
+<table style="margin-bottom: 24px;">
+  <thead>
+    <tr><th>File</th><th>Description</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Image_hendheld_e6_gamemt.zip</code></td><td>Main archive with firmware, tools and scripts</td><td><a href="https://mega.nz/file/3KBhnbrQ#UrMYnMqCki3VUYvKrVpQz5eN2wiyoB3u0Celxk7UMkw" style="color:#58a6ff;">MEGA</a> / <a href="https://www.mediafire.com/file/7qa2zyyjzbxcbq6/Image_hendheld_e6_gamemt.zip/file" style="color:#58a6ff;">MediaFire</a></td></tr>
+  </tbody>
+</table>
+
+<h3>Optional files</h3>
+<table style="margin-bottom: 24px;">
+  <thead>
+    <tr><th>File</th><th>Description</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>EMULATORS.7z</code></td><td>Emulators (RetroArch, PPSSPP, Mupen64Plus) with pre-configured files</td><td><a href="https://mega.nz/file/jKgSmKBJ#a8xG7pZ9ibnc95uIZqp3Bdi6AV518FtLlwnqSwBqzw4" style="color:#58a6ff;">MEGA</a> / <a href="https://www.mediafire.com/file/c0z1on8lji9vtky/EMULATORS.7z/file" style="color:#58a6ff;">MediaFire</a></td></tr>
+  </tbody>
+</table>
+
+<div class="step"><div class="step-num">!</div>
+<h3>📁 Contents of <code>Image_hendheld_e6_gamemt.zip</code></h3>
+<p>After extraction, you will get the following file structure:</p>
+
+<h4>🔹 MAIN FIRMWARE FILES (required for flashing)</h4>
+<ul class="file-list">
+  <li><code>parameter.txt</code> — partition configuration file</li>
+  <li><code>boot.img</code> — boot partition image (system kernel)</li>
+  <li><code>system.img</code> — Android system partition image</li>
+  <li><code>recovery.img</code> — recovery mode image</li>
+  <li><code>misc.img</code> — misc partition image</li>
+  <li><code>userdata.img</code> — user data partition image (optional)</li>
+</ul>
+
+<h4>🔹 TOOLS (for Linux / Windows)</h4>
+<ul class="file-list">
+  <li><code>setup.sh</code> — setup script for Linux</li>
+  <li><code>flash_gamemt.sh</code> — flashing script for Linux</li>
+  <li><code>upgrade_tool</code> — Rockchip flashing tool (Linux)</li>
+  <li><code>rkflashtoolv3.exe</code> — Rockchip flashing tool (Windows)</li>
+  <li><code>DriverAssitant_v5.1.1.zip</code> — Rockchip drivers for Windows</li>
+</ul>
+
+<h4>🔹 ADDITIONAL FILES</h4>
+<ul class="file-list">
+  <li><code>Testpoints_maskrom.jpg</code> — motherboard photo with testpoints highlighted</li>
+  <li><code>Testpoints_maskrom_small.jpg</code> — second reference photo</li>
+  <li><code>old_backup_orginal_firmware/</code> — folder with original manufacturer firmware (backup)</li>
+  <li><code>GameMT_Tools.apk</code> — tool application for SD card</li>
+</ul>
+
+<div class="info">
+  <strong>📌 Note:</strong> Emulators (RetroArch, PPSSPP, Mupen64Plus) are in a separate archive <code>EMULATORS.7z</code> and are optional.
+</div>
+</div>
+</span>
+
+<!-- ==================== WYMAGANIA / REQUIREMENTS ==================== -->
+<span class="pl">
+<h2>📋 Wymagania</h2>
+<div class="step"><div class="step-num">1</div>
+<h3>Sprzęt</h3>
+<ul style="list-style:none;padding-left:8px">
+  <li>✅ Konsola GameMT E6 (płyta YX13-GAME-V3.1)</li>
+  <li>✅ Kabel USB-A do USB-C / micro-USB</li>
+  <li>✅ Komputer z systemem <strong>Linux</strong> (Ubuntu 20.04+, Zorin, Mint, Pop!_OS) <strong>LUB Windows</strong></li>
+  <li>✅ Bateria konsoli naładowana minimum 15%</li>
+  <li>✅ Podstawowe śrubokręty i wiedza wraz z pensetą</li>
+</ul>
+</div>
+
+<div class="step"><div class="step-num">2</div>
+<h3>Pliki do pobrania</h3>
+<table>
+<tr>
+<th>Plik</th><th>Opis</th>
+</tr>
+<tr>
+<td><code>Image_hendheld_e6_gamemt.zip</code></td>
+<td>Folder z obrazami partycji i narzędziami</td>
+</tr>
+<tr>
+<td><code>upgrade_tool</code> (Linux)</td>
+<td>Narzędzie do flashowania Rockchip dla Linux</td>
+</tr>
+<tr>
+<td><code>rkflashtoolv3.exe</code> (Windows)</td>
+<td>Narzędzie do flashowania Rockchip dla Windows</td>
+</tr>
+<tr>
+<td><code>setup.sh</code></td>
+<td>Skrypt konfiguracyjny (z tego pakietu)</td>
+</tr>
+<tr>
+<td><code>flash_gamemt.sh</code></td>
+<td>Skrypt flashowania (z tego pakietu)</td>
+</tr>
+</table>
+<div class="info">
+  <strong>upgrade_tool / rkflashtoolv3</strong> — pobierz narzędzie ze strony:<br>
+  Szukaj: <code>Rockchip upgrade_tool Linux download</code> lub <code>rkflashtoolv3 Windows</code><br>
+  lub pobierz z repozytorium producenta konsoli razem z firmware.
+</div>
+</div>
+</span>
+
+<span class="en" style="display:none">
+<h2>📋 Requirements</h2>
+<div class="step"><div class="step-num">1</div>
+<h3>Hardware</h3>
+<ul style="list-style:none;padding-left:8px">
+  <li>✅ GameMT E6 console (board YX13-GAME-V3.1)</li>
+  <li>✅ USB-A to USB-C / micro-USB cable</li>
+  <li>✅ Computer running <strong>Linux</strong> (Ubuntu 20.04+, Zorin, Mint, Pop!_OS) <strong>OR Windows</strong></li>
+  <li>✅ Console battery charged at least 15%</li>
+  <li>✅ Basic screwdrivers and knowledge along with tweezers</li>
+</ul>
+</div>
+
+<div class="step"><div class="step-num">2</div>
+<h3>Files to download</h3>
+<table>
+<tr>
+<th>File</th><th>Description</th>
+</tr>
+<tr>
+<td><code>Image_hendheld_e6_gamemt.zip</code></td>
+<td>Folder with partition images and tools</td>
+</tr>
+<tr>
+<td><code>upgrade_tool</code> (Linux)</td>
+<td>Rockchip flashing tool for Linux</td>
+</tr>
+<tr>
+<td><code>rkflashtoolv3.exe</code> (Windows)</td>
+<td>Rockchip flashing tool for Windows</td>
+</tr>
+<tr>
+<td><code>setup.sh</code></td>
+<td>Setup script (from this package)</td>
+</tr>
+<tr>
+<td><code>flash_gamemt.sh</code></td>
+<td>Flash script (from this package)</td>
+</tr>
+</table>
+<div class="info">
+  <strong>upgrade_tool / rkflashtoolv3</strong> — download from:<br>
+  Search: <code>Rockchip upgrade_tool Linux download</code> or <code>rkflashtoolv3 Windows</code><br>
+  or download from the console manufacturer's repository along with firmware.
+</div>
+</div>
+</span>
+
+<!-- ==================== INSTALACJA NARZĘDZI / TOOL INSTALLATION ==================== -->
+<h2 class="pl">🔧 Instalacja narzędzi</h2>
+<h2 class="en" style="display:none">🔧 Tool Installation</h2>
+
+<div class="os-tabs">
+  <div class="os-tab active" data-os="linux">🐧 Linux</div>
+  <div class="os-tab" data-os="windows">🪟 Windows</div>
+</div>
+
+<div id="linux-content" class="os-content active">
+  <span class="pl">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Rozpakuj archiwum</h3>
+    <p>Rozpakuj pobrany plik ZIP do folderu domowego (<code>~/</code>):</p>
+    <pre><code>cd ~
+unzip Image_hendheld_e6_gamemt.zip</code></pre>
+    <p>Umieść plik <code>upgrade_tool</code> w folderze <code>~/Image_hendheld_e6_gamemt/</code></p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Uruchom skrypt konfiguracyjny</h3>
+    <pre><code>cd ~/Image_hendheld_e6_gamemt
+chmod +x setup.sh
+bash setup.sh</code></pre>
+    <div class="info">Skrypt zainstaluje wymagane pakiety, skonfiguruje reguły USB i skopiuje skrypt flashowania do folderu domowego.</div>
+    <div class="warn">Po zakończeniu <strong>wyloguj się i zaloguj ponownie</strong> aby zastosować uprawnienia USB.</div>
+    </div>
+  </span>
+  <span class="en" style="display:none">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Extract the archive</h3>
+    <p>Extract the downloaded ZIP to your home folder (<code>~/</code>):</p>
+    <pre><code>cd ~
+unzip Image_hendheld_e6_gamemt.zip</code></pre>
+    <p>Place <code>upgrade_tool</code> inside <code>~/Image_hendheld_e6_gamemt/</code></p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Run the setup script</h3>
+    <pre><code>cd ~/Image_hendheld_e6_gamemt
+chmod +x setup.sh
+bash setup.sh</code></pre>
+    <div class="info">The script will install required packages, configure USB rules and copy the flash script to your home folder.</div>
+    <div class="warn">After completion <strong>log out and back in</strong> to apply USB permissions.</div>
+    </div>
+  </span>
+</div>
+
+<div id="windows-content" class="os-content">
+  <span class="pl">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Rozpakuj archiwum</h3>
+    <p>Rozpakuj plik <code>Image_hendheld_e6_gamemt.zip</code> do wygodnego miejsca (np. <code>C:\GameMT\</code>).</p>
+    <p>Umieść plik <code>rkflashtoolv3.exe</code> w tym samym folderze.</p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Zainstaluj sterowniki Rockchip</h3>
+    <p>Jeśli jeszcze nie masz sterowników Rockchip, pobierz i zainstaluj <strong>DriverAssitant</strong> lub sterowniki <strong>Rockchip USB Driver</strong>.</p>
+    <div class="info">Sterowniki są często dostępne wraz z programem rkflashtoolv3 lub na stronie producenta.</div>
+    </div>
+  </span>
+  <span class="en" style="display:none">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Extract the archive</h3>
+    <p>Extract <code>Image_hendheld_e6_gamemt.zip</code> to a convenient location (e.g. <code>C:\GameMT\</code>).</p>
+    <p>Place <code>rkflashtoolv3.exe</code> in the same folder.</p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Install Rockchip drivers</h3>
+    <p>If you don't have Rockchip drivers yet, download and install <strong>DriverAssitant</strong> or <strong>Rockchip USB Driver</strong>.</p>
+    <div class="info">Drivers are often available together with rkflashtoolv3 or on the manufacturer's website.</div>
+    </div>
+  </span>
+</div>
+
+<!-- ==================== MASKROM ==================== -->
+<span class="pl">
+<h2>🔌 Wejście w tryb Maskrom</h2>
+<p>Tryb Maskrom to specjalny tryb programowania procesora RK3326. Konsola musi być w tym trybie aby można było wgrać oprogramowanie.</p>
+
+<div class="step"><div class="step-num">A</div>
+<h3>Metoda 1 — Przycisk POWER (zalecana)</h3>
+<div class="danger">⚠️ Metoda dla zaawansowanych użytkowników. Wymaga otwarcia konsoli!</div>
+<ol style="padding-left:20px;line-height:2">
+  <li>Upewnij się że bateria jest naładowana <strong>powyżej 15%</strong></li>
+  <li>Wyłącz konsolę (jeśli jest włączona)</li>
+  <li>Podłącz kabel USB <strong>do portu USB-2</strong> konsoli i do komputera</li>
+  <li>Zewrzyj testpointy <strong>TP1 → GND</strong> metalową pensetą lub kabelkiem ( 2 = TP1 , 4 = GND)</li>
+  <li>Naciśnij i przytrzymaj przycisk <strong>POWER</strong></li>
+  <li>Sprawdź na komputerze czy konsola jest wykryta</li>
+</ol>
+<div class="photo-placeholder"><img src="Testpoints_maskrom.jpg" style="width:100%;height:auto; border-radius:20px;" alt="Testpoints Maskrom"/></div>
+</div>
+
+<div class="step"><div class="step-num">B</div>
+<h3>Metoda 2 — Zwarcie testpointów TP1 do GND BEZ PODŁĄCZONEJ BATERII</h3>
+<div class="danger">⚠️ Metoda dla zaawansowanych użytkowników. Wymaga otwarcia konsoli!</div>
+<ol style="padding-left:20px;line-height:2">
+  <li>Otwórz obudowę konsoli</li>
+   <li>Podłącz kabel USB <strong>do portu USB-2</strong> konsoli (zasilanie) a następnie do swojego Komputera</li>
+  <li>Zewrzyj testpointy <strong>TP1 → GND</strong> metalową pensetą lub kabelkiem ( 2 = TP1 , 4 = GND)</li>
+  <li>Podłącz kabel USB <strong>do portu USB-3</strong> konsoli (zasilanie) [cały czas trzymając TP1 zwarty go GND]</li>
+  <li>Usuń zwarcie po wykryciu przez komputer</li>
+</ol>
+<div class="photo-placeholder"><img src="Testpoints_maskrom_small.jpg" style="width:100%;height:auto; border-radius:20px;" alt="Testpoints maskrom small"/></div>
+</div>
+
+<div class="step"><div class="step-num">✓</div>
+<h3>Weryfikacja połączenia (Linux)</h3>
+<pre><code>lsusb | grep 2207</code></pre>
+<div class="success">Powinieneś zobaczyć coś podobnego do:<br>
+<code>Bus 00X Device 00X: ID 2207:330d Fuzhou Rockchip Electronics Company</code></div>
+<h3>Weryfikacja połączenia (Windows)</h3>
+<p>Otwórz <strong>Menedżer urządzeń</strong> → szukaj <strong>Rockchip USB Device</strong> lub urządzenia z ID <code>2207:330d</code>.</p>
+</div>
+</span>
+
+<span class="en" style="display:none">
+<h2>🔌 Entering Maskrom Mode</h2>
+<p>Maskrom is a special programming mode of the RK3326 processor. The console must be in this mode before firmware can be flashed.</p>
+
+<div class="step"><div class="step-num">A</div>
+<h3>Method 1 — POWER button (recommended)</h3>
+<div class="danger">⚠️ For advanced users only. Requires opening the console!</div>
+<ol style="padding-left:20px;line-height:2">
+  <li>Make sure the battery is charged <strong>above 15%</strong></li>
+  <li>Turn off the console (if it's on)</li>
+  <li>Connect USB cable <strong>to USB-2 port</strong> of console and to computer</li>
+  <li>Short testpoints <strong>TP1 → GND</strong> with a metal pin or wire ( 2 = TP1 , 4 = GND)</li>
+  <li>Press and hold the <strong>POWER</strong> button for about 3-6s</li>
+  <li>Check on your computer if the console is detected</li>
+</ol>
+<div class="photo-placeholder"><img src="Testpoints_maskrom.jpg" style="width:100%;height:auto; border-radius:20px;" alt="Testpoints Maskrom"/></div>
+</div>
+
+<div class="step"><div class="step-num">B</div>
+<h3>Method 2 — Short testpoints TP1 to GND WITHOUT BATTERY CONNECTED</h3>
+<div class="danger">⚠️ For advanced users only. Requires opening the console!</div>
+<ol style="padding-left:20px;line-height:2">
+  <li>Open the console case</li>
+   <li>Connect USB cable <strong>to USB-2 port</strong> and then to your PC</li>
+     <li>Short testpoints <strong>TP1 → GND</strong> with a metal pin or wire ( 2 = TP1 , 4 = GND)</li>
+  <li>Connect USB cable <strong>to USB-3 port</strong> of console (power) [still TP1 shorted to GND]</li>
+  <li>Remove the short after detection by the computer</li>
+</ol>
+<div class="photo-placeholder"><img src="Testpoints_maskrom_small.jpg" style="width:100%;height:auto; border-radius:20px;" alt="Testpoints maskrom small"/></div>
+</div>
+
+<div class="step"><div class="step-num">✓</div>
+<h3>Verify connection (Linux)</h3>
+<pre><code>lsusb | grep 2207</code></pre>
+<div class="success">You should see something like:<br>
+<code>Bus 00X Device 00X: ID 2207:330d Fuzhou Rockchip Electronics Company</code></div>
+<h3>Verify connection (Windows)</h3>
+<p>Open <strong>Device Manager</strong> → look for <strong>Rockchip USB Device</strong> or device with ID <code>2207:330d</code>.</p>
+</div>
+</span>
+
+<!-- ==================== FLASHOWANIE / FLASHING ==================== -->
+<h2 class="pl">⚡ Wgrywanie oprogramowania</h2>
+<h2 class="en" style="display:none">⚡ Flashing the firmware</h2>
+<div class="warn pl">⚠️ Nie odłączaj kabla USB podczas procesu flashowania!</div>
+<div class="warn en" style="display:none">⚠️ Do not disconnect the USB cable during the flashing process!</div>
+
+<div id="linux-flash" class="os-content active">
+  <span class="pl">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Uruchom skrypt flashowania</h3>
+    <pre><code>bash ~/flash_gamemt.sh</code></pre>
+    </div>
+    <div class="step"><div class="step-num">2</div>
+    <h3>Postępuj zgodnie z instrukcjami na ekranie</h3>
+    <ol style="padding-left:20px;line-height:2">
+      <li>Wybierz język (1 = Polski, 2 = English)</li>
+      <li>Skrypt sprawdzi czy konsola jest wykryta w trybie Maskrom</li>
+      <li>Potwierdź że konsola jest widoczna (<code>t</code>/<code>y</code>)</li>
+      <li>Zdecyduj czy wyczyścić pamięć przed wgraniem (opcjonalne)</li>
+      <li>Poczekaj na zakończenie — może to potrwać kilka minut</li>
+    </ol>
+    </div>
+  </span>
+  <span class="en" style="display:none">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Run the flash script</h3>
+    <pre><code>bash ~/flash_gamemt.sh</code></pre>
+    </div>
+    <div class="step"><div class="step-num">2</div>
+    <h3>Follow on-screen instructions</h3>
+    <ol style="padding-left:20px;line-height:2">
+      <li>Choose language (1 = Polish, 2 = English)</li>
+      <li>The script will check if the console is detected in Maskrom mode</li>
+      <li>Confirm the console is visible (<code>y</code>)</li>
+      <li>Decide whether to erase memory before flashing (optional)</li>
+      <li>Wait for completion — this may take several minutes</li>
+    </ol>
+    </div>
+  </span>
+</div>
+
+<div id="windows-flash" class="os-content">
+  <span class="pl">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Uruchom rkflashtoolv3</h3>
+    <p>Otwórz folder z rozpakowanym firmware i uruchom <code>rkflashtoolv3.exe</code> <strong>jako administrator</strong>.</p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Wybierz wszystkie pliki obrazów</h3>
+    <p>W programie zaznacz wszystkie pliki z rozszerzeniem <code>.img</code> znajdujące się w folderze <code>Image_hendheld_e6_gamemt</code>:</p>
+    <ul style="padding-left:20px;line-height:2">
+      <li><code>boot.img</code></li>
+      <li><code>system.img</code></li>
+      <li><code>recovery.img</code></li>
+      <li><code>misc.img</code></li>
+      <li><code>parameter.txt</code> (lub plik konfiguracyjny)</li>
+      <li>oraz pozostałe <code>.img</code> jeśli występują</li>
+    </ul>
+    <div class="info">Upewnij się, że konsola jest podłączona w trybie Maskrom (powinna być widoczna w programie).</div>
+    </div>
+
+    <div class="step"><div class="step-num">3</div>
+    <h3>Rozpocznij flashowanie</h3>
+    <p>Kliknij przycisk <strong>Start</strong> lub <strong>Flash</strong> i czekaj na zakończenie procesu. Nie odłączaj kabla USB ani nie wyłączaj komputera.</p>
+    <div class="warn">Proces może potrwać kilka minut — na ekranie pojawi się pasek postępu.</div>
+    </div>
+
+    <div class="step"><div class="step-num">4</div>
+    <h3>Zakończenie</h3>
+    <p>Po wyświetleniu komunikatu o sukcesie możesz odłączyć kabel USB od konsoli.</p>
+    <div class="success">✅ Flashowanie zakończone! Konsola jest gotowa do pierwszego uruchomienia.</div>
+    </div>
+  </span>
+  <span class="en" style="display:none">
+    <div class="step"><div class="step-num">1</div>
+    <h3>Run rkflashtoolv3</h3>
+    <p>Open the folder with extracted firmware and run <code>rkflashtoolv3.exe</code> <strong>as administrator</strong>.</p>
+    </div>
+
+    <div class="step"><div class="step-num">2</div>
+    <h3>Select all image files</h3>
+    <p>In the program, select all <code>.img</code> files located in the <code>Image_hendheld_e6_gamemt</code> folder:</p>
+    <ul style="padding-left:20px;line-height:2">
+      <li><code>boot.img</code></li>
+      <li><code>system.img</code></li>
+      <li><code>recovery.img</code></li>
+      <li><code>misc.img</code></li>
+      <li><code>parameter.txt</code> (or config file)</li>
+      <li>and any other <code>.img</code> files if present</li>
+    </ul>
+    <div class="info">Make sure the console is connected in Maskrom mode (should be visible in the program).</div>
+    </div>
+
+    <div class="step"><div class="step-num">3</div>
+    <h3>Start flashing</h3>
+    <p>Click <strong>Start</strong> or <strong>Flash</strong> and wait for the process to complete. Do not disconnect the USB cable or turn off the computer.</p>
+    <div class="warn">The process may take several minutes — a progress bar will appear on screen.</div>
+    </div>
+
+    <div class="step"><div class="step-num">4</div>
+    <h3>Completion</h3>
+    <p>After a success message appears, you can disconnect the USB cable from the console.</p>
+    <div class="success">✅ Flashing complete! The console is ready for first boot.</div>
+    </div>
+  </span>
+</div>
+
+<!-- ==================== PRZYWROCENIE ORYGINALNEGO FIRMWARE ==================== -->
+<span class="pl">
+<h2>💾 Przywracanie oryginalnego oprogramowania (backup)</h2>
+<div class="info">W folderze <code>Image_hendheld_e6_gamemt\old_backup_orginal_firmware</code> znajduje się oryginalne oprogramowanie producenta.</div>
+<p>Jeśli coś poszło nie tak, lub chcesz wrócić do fabrycznego systemu, możesz przywrócić oryginalne firmware dokładnie tą samą metodą, jaką wgrywałeś niestandardowe oprogramowanie — wystarczy użyć plików z folderu <code>old_backup_orginal_firmware</code> zamiast domyślnych obrazów.</p>
+
+<div class="step"><div class="step-num">1</div>
+<h3>Krok 1 — Przygotowanie plików</h3>
+<p>Skopiuj zawartość folderu <code>old_backup_orginal_firmware</code> do głównego folderu <code>Image_hendheld_e6_gamemt</code> (nadpisując pliki) lub wskaż w narzędziu flashującym bezpośrednio ścieżkę do tego folderu.</p>
+</div>
+
+<div class="step"><div class="step-num">2</div>
+<h3>Krok 2 — Wejście w tryb Maskrom</h3>
+<p>Postępuj zgodnie z instrukcją wejścia w tryb Maskrom (opisana powyżej).</p>
+</div>
+
+<div class="step"><div class="step-num">3</div>
+<h3>Krok 3 — Flashowanie oryginalnego firmware</h3>
+<p>Użyj tej samej metody co przy instalacji niestandardowego oprogramowania:</p>
+<ul style="padding-left:20px;line-height:2">
+  <li><strong>Linux:</strong> uruchom <code>bash ~/flash_gamemt.sh</code></li>
+  <li><strong>Windows:</strong> użyj <code>rkflashtoolv3.exe</code> i wybierz pliki z folderu backup</li>
+</ul>
+</div>
+
+<div class="success">✅ Po zakończeniu konsola wróci do stanu fabrycznego — wszystkie zmiany zostaną cofnięte.</div>
+</span>
+
+<span class="en" style="display:none">
+<h2>💾 Restoring original firmware (backup)</h2>
+<div class="info">The folder <code>Image_hendheld_e6_gamemt\old_backup_orginal_firmware</code> contains the original manufacturer firmware.</div>
+<p>If something went wrong, or you want to return to the factory system, you can restore the original firmware using exactly the same method as for custom firmware — just use the files from the <code>old_backup_orginal_firmware</code> folder instead of the default images.</p>
+
+<div class="step"><div class="step-num">1</div>
+<h3>Step 1 — Prepare files</h3>
+<p>Copy the contents of <code>old_backup_orginal_firmware</code> to the main <code>Image_hendheld_e6_gamemt</code> folder (overwriting files) or point your flashing tool directly to that folder.</p>
+</div>
+
+<div class="step"><div class="step-num">2</div>
+<h3>Step 2 — Enter Maskrom mode</h3>
+<p>Follow the Maskrom entry instructions described above.</p>
+</div>
+
+<div class="step"><div class="step-num">3</div>
+<h3>Step 3 — Flash original firmware</h3>
+<p>Use the same method as for installing custom firmware:</p>
+<ul style="padding-left:20px;line-height:2">
+  <li><strong>Linux:</strong> run <code>bash ~/flash_gamemt.sh</code></li>
+  <li><strong>Windows:</strong> use <code>rkflashtoolv3.exe</code> and select files from the backup folder</li>
+</ul>
+</div>
+
+<div class="success">✅ After completion, the console will return to factory state — all changes will be reverted.</div>
+</span>
+
+<!-- ==================== ROZWIĄZYWANIE PROBLEMÓW / TROUBLESHOOTING ==================== -->
+<span class="pl">
+<h2>🛠 Rozwiązywanie problemów</h2>
+<table>
+<tr><th>Problem</th><th>Rozwiązanie</th></tr>
+<tr><td>Konsola nie jest wykryta (<code>lsusb</code> nic nie pokazuje)</td>
+    <td>Sprawdź kabel USB, spróbuj innego portu, wykonaj ponownie kroki wejścia w Maskrom</td></tr>
+<tr><td><code>check download item failed!</code></td>
+    <td>Konsola zresetowała się — wróć do trybu Maskrom i uruchom skrypt ponownie</td></tr>
+<tr><td>Konsola bootuje się w pętli</td>
+    <td>Wejdź w Maskrom i uruchom skrypt z opcją czyszczenia pamięci (<code>t</code>/<code>y</code>)</td></tr>
+<tr><td>Czarny ekran po flashowaniu</td>
+    <td>Przytrzymaj POWER przez 10 sekund, następnie uruchom ponownie</td></tr>
+<tr><td>Błąd uprawnień do <code>upgrade_tool</code> (Linux)</td>
+    <td>Uruchom: <code>chmod +x ~/Image_hendheld_e6_gamemt/upgrade_tool</code></td></tr>
+<tr><td>Błąd: <code>Permission denied /dev/bus/usb</code> (Linux)</td>
+    <td>Wyloguj się i zaloguj ponownie lub uruchom: <code>sudo bash ~/flash_gamemt.sh</code></td></tr>
+<tr><td>rkflashtoolv3 nie widzi konsoli (Windows)</td>
+    <td>Sprawdź sterowniki Rockchip, uruchom program jako administrator, użyj innego kabla USB</td></tr>
+</table>
+</span>
+
+<span class="en" style="display:none">
+<h2>🛠 Troubleshooting</h2>
+<table>
+<tr><th>Problem</th><th>Solution</th></tr>
+<tr><td>Console not detected (<code>lsusb</code> shows nothing)</td>
+    <td>Check USB cable, try different port, redo Maskrom entry steps</td></tr>
+<tr><td><code>check download item failed!</code></td>
+    <td>Console reset itself — return to Maskrom mode and run script again</td></tr>
+<tr><td>Console bootloops</td>
+    <td>Enter Maskrom and run script with memory erase option (<code>y</code>)</td></tr>
+<tr><td>Black screen after flashing</td>
+    <td>Hold POWER for 10 seconds, then restart</td></tr>
+<tr><td>Permission error for <code>upgrade_tool</code> (Linux)</td>
+    <td>Run: <code>chmod +x ~/Image_hendheld_e6_gamemt/upgrade_tool</code></td></tr>
+<tr><td>Error: <code>Permission denied /dev/bus/usb</code> (Linux)</td>
+    <td>Log out and back in, or run: <code>sudo bash ~/flash_gamemt.sh</code></td></tr>
+<tr><td>rkflashtoolv3 doesn't see console (Windows)</td>
+    <td>Check Rockchip drivers, run as administrator, try different USB cable</td></tr>
+</table>
+</span>
+
+<!-- ==================== CO ZAWIERA FIRMWARE ==================== -->
+<span class="pl">
+<h2>📦 Co zawiera to oprogramowanie</h2>
+<table>
+<tr><th>Funkcja</th><th>Status</th></tr>
+<tr><td>System Android 8.1 (zmodyfikowany)</td><td><span class="badge badge-green">✅ Aktywny</span></td></tr>
+<tr><td>Usunięte złośliwe aplikacje (gameMante, F-Droid)</td><td><span class="badge badge-green">✅ Usunięte</span></td></tr>
+<tr><td>Root (su) — dostęp administratora</td><td><span class="badge badge-green">✅ Aktywny</span></td></tr>
+<tr><td>Własne boot logo i animacja</td><td><span class="badge badge-green">✅ Aktywna</span></td></tr>
+<tr><td>Własna tapeta domyślna</td><td><span class="badge badge-green">✅ Ustawiona</span></td></tr>
+<tr><td>GameMT Tools APK (kursor, terminal, monitor)</td><td><span class="badge badge-blue">📦 Na karcie SD</span></td></tr>
+<tr><td>RetroArch (emulator NES/SNES/GBA/PS1/Genesis)</td><td><span class="badge badge-blue">📦 Na karcie SD</span></td></tr>
+<tr><td>PPSSPP (emulator PSP)</td><td><span class="badge badge-blue">📦 Na karcie SD</span></td></tr>
+<tr><td>Mupen64Plus (emulator N64)</td><td><span class="badge badge-blue">📦 Na karcie SD</span></td></tr>
+</table>
+</span>
+
+<span class="en" style="display:none">
+<h2>📦 What's included in this firmware</h2>
+<table>
+<tr><th>Feature</th><th>Status</th></tr>
+<tr><td>Android 8.1 (modified)</td><td><span class="badge badge-green">✅ Active</span></td></tr>
+<tr><td>Removed malicious apps (gameMante, F-Droid)</td><td><span class="badge badge-green">✅ Removed</span></td></tr>
+<tr><td>Root (su) — administrator access</td><td><span class="badge badge-green">✅ Active</span></td></tr>
+<tr><td>Custom boot logo and animation</td><td><span class="badge badge-green">✅ Active</span></td></tr>
+<tr><td>Custom default wallpaper</td><td><span class="badge badge-green">✅ Set</span></td></tr>
+<tr><td>GameMT Tools APK (cursor, terminal, monitor)</td><td><span class="badge badge-blue">📦 On SD card</span></td></tr>
+<tr><td>RetroArch (NES/SNES/GBA/PS1/Genesis emulator)</td><td><span class="badge badge-blue">📦 On SD card</span></td></tr>
+<tr><td>PPSSPP (PSP emulator)</td><td><span class="badge badge-blue">📦 On SD card</span></td></tr>
+<tr><td>Mupen64Plus (N64 emulator)</td><td><span class="badge badge-blue">📦 On SD card</span></td></tr>
+</table>
+</span>
+
+<footer>
+  <p>GameMT E6 Custom Firmware — YX13-GAME-V3.1 — RK3326 — Android 8.1</p>
+  <p style="margin-top:8px;font-size:22px;color:red">Używasz na własną odpowiedzialność / You use it at your own risk</p>
+</footer>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.pl').forEach(e => e.style.display = lang==='pl' ? 'block' : 'none');
+  document.querySelectorAll('.en').forEach(e => e.style.display = lang==='en' ? 'block' : 'none');
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick="setLang(\''+lang+'\')"]').classList.add('active');
+}
+
+// OS tabs for tool installation and flashing
+document.querySelectorAll('.os-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const os = tab.dataset.os;
+    document.querySelectorAll('.os-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.os-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(`${os}-content`).classList.add('active');
+    document.getElementById(`${os}-flash`).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
