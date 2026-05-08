@@ -1,0 +1,25 @@
+
+#### 2. Dodaj plik `LICENSE`
+MIT lub GPL – doda to wiarygodności i pokaże AI, że projekt jest otwarty.
+
+#### 3. Uzupełnij "About" swojego repozytorium na GitHubie
+Na stronie głównej repozytorium, po prawej stronie, kliknij koło zębate przy "About" i wpisz:
+*   **Description**: `Custom firmware for GameMT E6 2025 handheld (YX13-GAME-V3.1) - removes malware, adds root, fixes flashing issues.`
+*   **Website**: `https://czerwonypan.github.io/GameMT_Handheld_E6_2025_Firmware/`
+*   **Topics**: `gamemt-e6`, `rk3326`, `firmware`, `android-flashing`, `custom-rom`, `retro-gaming`
+
+#### 4. Włącz GitHub Pages
+Jeśli jeszcze tego nie zrobiłeś, wejdź w **Settings → Pages**, wybierz gałąź `main` i folder `/ (root)`. Twój `index.html` będzie dostępny pod adresem, który wpisałeś w `og:url` – to bardzo pomaga w indeksacji.
+
+### Podsumowanie działań
+
+| Co zrobić | Dlaczego to pomoże AI / wyszukiwarce |
+| :--- | :--- |
+| **Dodać meta tagi i JSON-LD** | Bezpośrednio mówi wyszukiwarce: "to jest instrukcja, dotyczy tego modelu i systemu" |
+| **Stworzyć `README.md`** | GitHub i Copilot uważają go za "stronę główną" repozytorium – indeksują go priorytetowo |
+| **Uzupełnić "About" i tematy** | Ułatwia znalezienie repozytorium przez `rk3326 firmware` lub `gamemt e6 custom rom` |
+| **Włączyć GitHub Pages** | Daje stały, publiczny adres dla twojej instrukcji HTML, który można cytować i indeksować |
+
+Po wprowadzeniu tych zmian Twoja strona będzie nie tylko świetną instrukcją dla ludzi, ale też **czytelnym i wartościowym źródłem wiedzy** dla wyszukiwarek oraz asystentów AI (jak ja). W rezultacie więcej osób znajdzie Twój projekt, gdy będą szukać naprawy lub ulepszenia swojej konsoli.
+
+Jeśli chcesz, mogę przygotować dla Ciebie cały nowy, gotowy do wklejenia plik `index.html` z wszystkimi tymi ulepszeniami od razu w kodzie.

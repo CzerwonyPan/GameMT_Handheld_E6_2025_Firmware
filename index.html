@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GameMT E6 2025 - Instrukcja Flashowania</title>
+<!-- STANDARDOWE META TAGI SEO -->
+<meta name="description" content="Instrukcja flashowania niestandardowego firmware dla GameMT E6 2025 (płyta YX13-GAME-V3.1). Naprawa, usuwanie złośliwego oprogramowania, root i emulatory na RK3326.">
+<meta name="keywords" content="GameMT E6, GameMT E6 2025, firmware, custom firmware, flashowanie, instrukcja, RK3326, Android 8.1, usuwanie malware, root">
+<meta name="author" content="CzerwonyPan">
+<meta name="robots" content="index, follow">
+
+<!-- DLA WYŚWIETLENIA W LINKACH (SOCIAL MEDIA, KOMUNIKATORY) -->
+<meta property="og:title" content="GameMT E6 2025 - Instrukcja Flashowania niestandardowego firmware">
+<meta property="og:description" content="Krok po kroku: jak przywrócić i ulepszyć system w konsoli GameMT E6. Wgrywanie custom ROM, root, usuwanie malware.">
+<meta property="og:image" content="https://github.com/CzerwonyPan/GameMT_Handheld_E6_2025_Firmware/blob/main/Testpoints_maskrom.jpg?raw=true">
+<meta property="og:url" content="https://czerwonypan.github.io/GameMT_Handheld_E6_2025_Firmware/">
+<meta property="og:type" content="website">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
@@ -739,6 +751,42 @@ document.querySelectorAll('.os-tab').forEach(tab => {
     document.getElementById(`${os}-flash`).classList.add('active');
   });
 });
+</script>
+<!-- DLA WYSZUKIWARKI (STRUKTURYZOWANE DANE JSON-LD) - TO NAJWAŻNIEJSZE DLA AI -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Instrukcja flashowania niestandardowego firmware dla GameMT E6",
+  "description": "Kompletny poradnik od wejścia w tryb Maskrom aż po przywracanie oryginalnego softu. Wszystkie pliki i narzędzia w jednym miejscu.",
+  "author": {
+    "@type": "Person",
+    "name": "CzerwonyPan",
+    "url": "https://github.com/CzerwonyPan"
+  },
+  "mainEntityOfPage": "https://czerwonypan.github.io/GameMT_Handheld_E6_2025_Firmware/",
+  "image": "https://github.com/CzerwonyPan/GameMT_Handheld_E6_2025_Firmware/blob/main/Testpoints_maskrom.jpg?raw=true",
+  "datePublished": "2026-05-09",
+  "dateModified": "2026-05-09",
+  "operatingSystem": "Android 8.1 (Rockchip RK3326)",
+  "steps": [
+    {
+      "@type": "HowToStep",
+      "name": "Pobranie oprogramowania",
+      "text": "Pobierz archiwum Image_hendheld_e6_gamemt.zip z MEGA lub MediaFire."
+    },
+    {
+      "@type": "HowToStep", 
+      "name": "Wejście w tryb Maskrom",
+      "text": "Zewrzyj testpointy TP1 i GND na płycie głównej konsoli."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Wgrywanie firmware",
+      "text": "Uruchom skrypt flash_gamemt.sh (Linux) lub FactoryTool (Windows)."
+    }
+  ]
+}
 </script>
 </body>
 </html>
